@@ -24,7 +24,7 @@ void dfs2(int); // Пошук компонентів сильної звязності
 
 int main(void)
 {
-	freopen("input2.txt", "r", stdin);
+	freopen("input1.txt", "r", stdin);
 	//freopen("output.txt", "w", stdout);
 
 	int m; // Кількість ребер
