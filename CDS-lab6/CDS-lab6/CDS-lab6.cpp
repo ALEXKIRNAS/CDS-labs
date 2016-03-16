@@ -1,6 +1,6 @@
 /*************************************
 * Компютерні дискретні структури     *
-* Лабораторний практикум №5          *
+* Лабораторний практикум №6          *
 * Роботу виконав студент групи ІП-51 *
 * Зарічковий Олександр               *
 *************************************/
@@ -24,7 +24,46 @@ void dfs2(int); // Пошук компонентів сильної звязності
 
 int main(void)
 {
+	freopen("input2.txt", "r", stdin);
+	//freopen("output.txt", "w", stdout);
 
+	int m; // Кількість ребер
+	int n; // Кількість вершин
+
+	scanf_s("%d %d", &n, &m);
+	for (int i = 1; i <= m; i++)
+	{
+		int v, u;
+		scanf_s("%d %d", &v, &u);
+		g[v].push_back(u);
+		gr[u].push_back(v);
+	}
+
+	visit.assign(n, 0);
+	for (int i = 0; i < n; i++)
+		if(!visit[i])
+			dfs1(i);
+
+	visit.assign(n, 0);
+	for (int i = 0; i < n; i++)
+	{
+		int v = order[n - 1 - i];
+		if (!visit[order[v]])
+		{
+			component.clear();
+			dfs2(order[v]);
+			components.push_back(component);
+		}
+	}
+
+
+	printf("Total count of components: %d\n", components.size());
+	for (int i = 0; i < components.size(); i++)
+	{
+		printf("Component %d: ", i + 1);
+		for (int z = 0; z < components[i].size(); z++) printf("%d ", components[i][z]);
+		printf("\n");
+	}
 }
 
 void dfs1(int v)
