@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <vector>
 #pragma warning(disable : 4996)
+const int NotUsed = system("color F0");
 using std::vector;
 
 const int Nmax = 1e2 + 17; // Максимальний розмір графу, допустимого на обробку
@@ -20,7 +21,7 @@ void dfs(int);
 
 int main(void)
 {
-	freopen("input3.txt", "r", stdin);
+	freopen("input2.txt", "r", stdin);
 	//freopen("output.txt", "w", stdout);
 
 	int m; // Кількість ребер
