@@ -39,19 +39,19 @@ int main(void)
 		gr[u].push_back(v);
 	}
 
-	visit.assign(n, 0);
-	for (int i = 0; i < n; i++)
+	visit.assign(n+1, 0);
+	for (int i = 1; i <= n; i++)
 		if(!visit[i])
 			dfs1(i);
 
-	visit.assign(n, 0);
+	visit.assign(n+1, 0);
 	for (int i = 0; i < n; i++)
 	{
 		int v = order[n - 1 - i];
-		if (!visit[order[v]])
+		if (!visit[v])
 		{
 			component.clear();
-			dfs2(order[v]);
+			dfs2(v);
 			components.push_back(component);
 		}
 	}
