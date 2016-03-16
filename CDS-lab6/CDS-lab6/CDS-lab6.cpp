@@ -34,3 +34,11 @@ void dfs1(int v)
 		if (!visit[g[v][i]]) dfs1(g[v][i]);
 	order.push_back(v);
 }
+
+void dfs2(int v)
+{
+	visit[v] = 1;
+	component.push_back(v);
+	for (int i = 0; i < gr[v].size(); i++)
+		if (!visit[gr[v][i]]) dfs2(gr[v][i]);
+}
