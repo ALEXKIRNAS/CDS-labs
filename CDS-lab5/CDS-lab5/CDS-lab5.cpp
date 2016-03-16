@@ -20,7 +20,7 @@ void dfs(int);
 
 int main(void)
 {
-	freopen("input.txt", "r", stdin);
+	freopen("input3.txt", "r", stdin);
 	//freopen("output.txt", "w", stdout);
 
 	int m; // Кількість ребер
@@ -33,8 +33,9 @@ int main(void)
 		scanf_s("%d %d", &v, &u);
 		g[v].push_back(u);
 	}
+	topologicalSort(n);
 
-	printf("Топологічне сортуваня:\n");
+	printf("Topological sort:\n");
 	for (int i = 0; i < TS.size(); i++)
 		printf("%d ", TS[i]);
 }
