@@ -1,4 +1,5 @@
 #include <iostream>
+const int NotUsed = system("color F0");
 
 int g[110][110];
 
@@ -21,7 +22,7 @@ void dei(int s, int f, int n) {
 
 int main() {
 	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w+", stdout);
+	//freopen("output.txt", "w+", stdout);
 	int n, s, f, i, j;
 	scanf("%d%d%d", &n, &s, &f);
 	for (i = 0; i<n; i++) for (j = 0; j<n; j++) {
@@ -29,4 +30,5 @@ int main() {
 		if (g[i][j]<0) g[i][j] = INT_MAX;
 	}
 	dei(s - 1, f - 1, n);
+	printf("\n");
 }
