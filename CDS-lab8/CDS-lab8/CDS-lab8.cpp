@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+const int NotUsed = system("color F0");
 
 using namespace std;
 
@@ -9,7 +10,7 @@ struct edge {
 
 int main() {
 	freopen("input.txt", "r", stdin);
-	freopen("output.txt", "w+", stdout);
+	//freopen("output.txt", "w+", stdout);
 	int n, m, i, z, INF = 1e7 + 7;
 	vector <edge> q;
 	scanf("%d%d", &n, &m);
