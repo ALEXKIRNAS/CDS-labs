@@ -26,7 +26,7 @@ int main(void)
 {
 	setlocale(LC_CTYPE, "RUSSIAN");
 
-	freopen("input2.txt", "r", stdin);
+	freopen("input.txt", "r", stdin);
 	//freopen("output.txt", "w", stdout);
 
 	int m; // Кількість ребер
