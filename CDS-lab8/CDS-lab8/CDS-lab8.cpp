@@ -1,3 +1,8 @@
+/*********************
+ *  Код написаний під автоматичну первірку
+ *  задачі: https://acmp.ru/?main=task&id_task=138
+ * ****************/
+
 #include <iostream>
 #include <vector>
 const int NotUsed = system("color F0");
