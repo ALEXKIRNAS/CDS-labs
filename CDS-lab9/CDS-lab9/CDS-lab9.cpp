@@ -6,7 +6,7 @@ using namespace std;
 
 const int Nmax = 1e2 + 17; // Max size of graph
 const int INF = 1e9;
-const int start = 1; // Starth point for way search
+const int start = 1; // Start point for way search
 
 vector < pair <int, int> > g[Nmax]; // Graph
 // 1 - weight, 2 - to
@@ -34,7 +34,7 @@ void output(int d[][Nmax], int path[][Nmax], int& n){
 	printf("Distance:\n");
 	for (int i = 1; i <= n; i++, printf("\n"))
 		for (int z = 1; z <= n; z++) 
-			if(d[i][z] != INF) printf("%6d", d[i][z]);
+			if(d[i][z] < INF/10) printf("%6d", d[i][z]);
 			else printf("%6s", "INF");
 
 	printf("\nPaths:\n");
