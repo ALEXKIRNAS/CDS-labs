@@ -1,34 +1,83 @@
 #include <iostream>
-const int NotUsed = system("color F0");
+#include <vector>
+using namespace std;
 
-int g[110][110];
+const int INF = 1000000000;
+const int Nmax = 1e3;
+vector < pair<int, int> > g[Nmax]; // Граф
 
-void dei(int s, int f, int n) {
+int d[Nmax]; // Масив відстаней від стартової вершини до всіх інших
+int p[Nmax]; // Масив для відновлення маршруту
+char u[Nmax]; // Мітки того, що мінімальний маршрут вже знайдений
 
-	__int64 dis[110], u, i, index, count;
-	bool vis[110] = { 0 };
-	for (i = 0; i<110; i++) { dis[i] = INT_MAX; vis[i] = 0; }
-	dis[s] = 0;
-	for (count = 0; count < n - 1; count++) {
-		int min = INT_MAX;
-		for (i = 0; i<n; i++) if (!vis[i] && dis[i]<min) { min = dis[i]; index = i; }
-		u = index;
-		vis[u] = 1;
-		for (i = 0; i<n; i++) if (!vis[i] && g[u][i] && dis[u] != INT_MAX && dis[u] + g[u][i]<dis[i]) dis[i] = dis[u] + g[u][i];
+
+void deis(int s, int n) {
+
+	for (int i = 0; i <= n; i++) d[i] = INF;
+	d[s] = 0;
+	p[s] = -1;
+
+	for (int i = 0; i<n; ++i) {
+		int v = -1;
+
+		for (int z = 0; z<n; z++)
+			if (!u[z] && (v == -1 || d[z] < d[v]))
+				v = z;
+
+		if (d[v] == INF)
+			break;
+
+		u[v] = true;
+
+		for (int j = 0; j<g[v].size(); ++j) {
+
+			int to = g[v][j].first;
+			int	len = g[v][j].second;
+
+			if (d[v] + len < d[to]) {
+				d[to] = d[v] + len;
+				p[to] = v;
+			}
+
+		}
+
 	}
-	if (dis[f] != INT_MAX) printf("%d", dis[f]);
-	else printf("-1");
+
 }
 
+
 int main() {
-	freopen("input.txt", "r", stdin);
-	//freopen("output.txt", "w+", stdout);
-	int n, s, f, i, j;
-	scanf("%d%d%d", &n, &s, &f);
-	for (i = 0; i<n; i++) for (j = 0; j<n; j++) {
-		scanf("%d", &g[i][j]);
-		if (g[i][j]<0) g[i][j] = INT_MAX;
+	int n, m;
+	cin >> n >> m;
+
+	pair <int, int> t;
+	for (int i = 0; i<m; i++)
+	{
+		int from, to, w;
+		cin >> from >> to >> w;
+
+		t.first = to;
+		t.second = w;
+
+		g[from].push_back(t);
 	}
-	dei(s - 1, f - 1, n);
-	printf("\n");
+
+	int s = 1; // стартовая вершина
+
+	deis(s, n);
+
+	cout << "Min len to:" << endl;
+	for (int i = 1; i <= n; i++) cout << i << " - " << d[i] << endl;
+
+	int end = 5; // Вершина до якої шукається шлях
+	vector <int> way;
+
+	// Відновлення маршруту
+	while (end != -1) {
+		way.push_back(end);
+		end = p[end];
+	}
+
+	cout << "Way:" << endl;
+	for (int i = way.size() - 1; i >= 0; i--) cout << way[i] << " ";
 }
