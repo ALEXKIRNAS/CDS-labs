@@ -9,7 +9,6 @@ const int INF = 1e9;
 
 double d[Nmax][1 << Nmax];
 double g[Nmax][Nmax] = { 0 };
-vector < pair<int, int> > point;
 
 void distance(int& n)
 {
@@ -55,7 +54,26 @@ void printfPath(int start, int& n)
 				mask -= (1 << i);
 			}
 
-	for (int i = 0; i < path.size(); i++) printf("%d ", path[i] + 1);
+	for (int i = 0; i < path.size() - 1; i++) printf("%d ", path[i] + 1);
+}
+
+void printfPath(int &n)
+{
+	int start = n - 1;
+	int mask = (1 << n) - 1;
+	vector <int> path;
+	path.push_back(start);
+
+	while (mask != 0)
+		for (int i = 0; i < n; i++)
+			if (g[start][i] != INF && ((mask & (1 << i)) != 0) && d[start][mask] == d[i][mask - (1 << i)] + g[start][i])
+			{
+				path.push_back(i);
+				start = i;
+				mask -= (1 << i);
+			}
+
+	for (int i = 1; i < path.size(); i++) printf("%d ", path[i] + 1);
 }
 
 int main(void)
@@ -64,23 +82,40 @@ int main(void)
 
 	freopen("input2.txt", "r", stdin);
 
-	int n;
-	scanf("%d", &n);
+	int n, m;
+	scanf("%d%d", &n, &m);
 
-	for (int i = 0; i < n; i++)
+	distance(n);
+
+	for (int i = 0; i < m; i++)
 	{
 		int x, y;
 		scanf("%d%d", &x, &y);
 
 		x--; y--;
-		point.push_back(std::make_pair(x, y));
+		g[x][y] = 1;
  	}
 
-	for (int i = 0; i < n; i++)
-		for (int z = i + 1; z < n; z++)
-			g[i][z] = g[z][i] = sqrt( double(pow((point[i].first - point[z].first), 2)) + pow((point[i].second - point[z].second), 2) );
 
 	double weight = travellingSalesmanProblem(start, n);
-	printf("Weight = %Lf\n", weight);
-	printfPath(start, n);
+	
+	if (weight != INF) {
+		printf("Hamiltonian circle:\n");
+		printfPath(start, n);
+	}
+	else
+	{
+		for (int i = 0; i < n; i++)
+			g[i][n] = g[n][i] = 1;
+
+		n++;
+		weight = travellingSalesmanProblem(n-1, n);
+		if (weight == INF) printf("No hamiltonian path or circle.");
+		else
+		{
+			printf("Hamiltonian path:\n");
+			printfPath(n);
+		}
+	}
+
 }
