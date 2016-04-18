@@ -11,7 +11,7 @@ int rang[Nmax] = { 0 };
 int main(void)
 {
 
-	freopen("input1.txt", "r", stdin);
+	freopen("input3.txt", "r", stdin);
 
 	int n, m;
 	scanf("%d%d", &n, &m);

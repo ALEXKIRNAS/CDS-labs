@@ -41,7 +41,7 @@ double travellingSalesmanProblem(int start, int& n)
 
 void printfPath(int start, int& n)
 {
-	int mask = (1 << n) - (1 << start);
+	int mask = (1 << n) - 1;
 	vector <int> path;
 	path.push_back(start);
 
@@ -80,7 +80,7 @@ int main(void)
 {
 	const int start = 0;
 
-	freopen("input2.txt", "r", stdin);
+	freopen("input1.txt", "r", stdin);
 
 	int n, m;
 	scanf("%d%d", &n, &m);
@@ -102,6 +102,7 @@ int main(void)
 	if (weight != INF) {
 		printf("Hamiltonian circle:\n");
 		printfPath(start, n);
+		printf("%d", start+1);
 	}
 	else
 	{
