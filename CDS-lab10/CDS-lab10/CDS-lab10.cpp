@@ -32,10 +32,11 @@ int main(void)
 	bool bad = false;
 
 	for (int i = 1; i <= n; i++)
-			if (rang[i] % 2)
-				if (v1 == -1) v1 = i;
-				else if (v2 == -1) v2 = i;
-				else bad = true;
+		if (rang[i] % 2) {
+			if (v1 == -1) v1 = i;
+			else if (v2 == -1) v2 = i;
+			else bad = true;
+		}
 
 	if (v2 != -1)
 	{

@@ -59,4 +59,5 @@ int main(void)
 	}
 
 	printf("Total weight: %d\n", total_weight);
+
 }
