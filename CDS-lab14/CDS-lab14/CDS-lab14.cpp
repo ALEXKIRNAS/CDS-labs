@@ -9,7 +9,7 @@ std::pair <int, int> rang[Nmax];
 
 int main(void)
 {
-	freopen("input1.txt", "r", stdin);
+	freopen("input2.txt", "r", stdin);
 
 	int n, m;
 	scanf("%d%d", &n, &m);

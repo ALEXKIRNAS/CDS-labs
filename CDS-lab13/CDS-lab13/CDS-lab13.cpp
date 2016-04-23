@@ -6,7 +6,7 @@ int count[Nmax] = { 0 };
 
 int main(void)
 {
-	freopen("input1.txt", "r", stdin);
+	freopen("input4.txt", "r", stdin);
 	int n, m;
 
 	scanf("%d%d", &n, &m);
